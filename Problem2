@@ -1,0 +1,41 @@
+import java.util.*;
+public class HelloWorld{
+    public static boolean palindromedescendant(int number){
+        boolean isSym = false;
+        while(number > 9) {
+            if (isSymmentrical(number)){
+                isSym = true;
+                break;
+            }
+            number = getSumOfDigits(number);
+        }
+        return isSym;
+    }
+    public static boolean isSymmentrical(int number) {
+        int reverseNum = 0, n = number;
+        if(n < 0) n= n*-1;
+        while( n != 0){
+            reverseNum = reverseNum * 10;
+            reverseNum = reverseNum + n%10;
+            n = n/10;
+        }
+        return (reverseNum == number);
+    }
+    public static int getSumOfDigits(int n) {
+        String iString = Integer.toString(n);
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<iString.length()-1;i+=2){
+            int i1 = Integer.parseInt(Character.toString(iString.charAt(i)));
+            int i2 = Integer.parseInt(Character.toString(iString.charAt(i+1)));
+            int number = i1+i2;
+            sb.append(Integer.toString(number));
+        }
+        return Integer.parseInt(sb.toString());
+    }
+
+     public static void main(String []args){
+         Scanner scan = new Scanner(System.in);
+   int number = scan.nextInt();
+   System.out.println(palindromedescendant(number));
+     }
+}
