@@ -1,0 +1,25 @@
+import java.util.*;
+import java.util.stream.*;
+public class HelloWorld{
+    static void getHashTags(String str){
+         String[] array = str.split(" ");
+    List<String> list = Arrays.asList(array); 
+    list.sort(Comparator.comparing(String::length).reversed());
+    List<String> l = list.stream().limit(3).collect(Collectors.toList());
+      
+        
+        
+        List<String> hashTags = l.stream()
+    .map(s -> "#" + s)
+    .collect(Collectors.toList());
+    System.out.println(hashTags);
+
+    }
+
+     public static void main(String[] args) {
+   Scanner scan = new Scanner(System.in);
+   String str = scan.nextLine();
+   str = str.replaceAll("\\p{Punct}","");
+   getHashTags(str);
+    
+}}
